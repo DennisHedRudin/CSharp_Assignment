@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="ContactApp.Views.AddNewContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ContactApp.Views"
+             xmlns:models="clr-namespace:MainApp.Models;assembly=Business"             
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="650" d:DesignWidth="400">
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Text="{Binding Title}"/>
+
+        <StackPanel Grid.Row="1" Margin="0 20 0 0">
+            
+            <TextBlock Text="First name" />
+            <TextBox Text="{Binding Form.FirstName}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="Last name" />
+            <TextBox Text="{Binding Form.LastName}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="Email" />
+            <TextBox Text="{Binding Form.Email}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="Phone number" />
+            <TextBox Text="{Binding Form.Phone}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="Adress" />
+            <TextBox Text="{Binding Form.Address}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="Postalcode" />
+            <TextBox Text="{Binding Form.PostalCode}" Margin="0 0 0 10" Padding="4" />
+
+            <TextBlock Text="City" />
+            <TextBox Text="{Binding Form.City}" Margin="0 0 0 10" Padding="4" />   
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="Add" Command="{Binding AddContactToListCommand}" Margin="0 10 0 5" Padding="5"/>
+            <Button Content="Cancel" Command="{Binding GoToListViewCommand}" Margin="0 10 0 5" Padding="5"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

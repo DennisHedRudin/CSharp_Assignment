@@ -8,7 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Buisness\Buisness.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Buisness\Business.csproj" />
   </ItemGroup>
 
 </Project>

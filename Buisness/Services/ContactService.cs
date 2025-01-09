@@ -1,37 +1,68 @@
 ﻿using System.Diagnostics;
+using Business.Dtos;
+using Business.Interfaces;
 using MainApp.Factories;
-using MainApp.Helper;
 using MainApp.Models;
 
 namespace MainApp.Services;
 
-public class ContactService
+public class ContactService(IContactRespository contactRespository) : IContactService
 {
-    private readonly List<ContactEntity> _contacts = [];
-    public bool Create(ContactForm form)
+    
+    private readonly IContactRespository _contactRespository = contactRespository;
+    private List<Contact> _contacts = [];
+
+
+
+    public IEnumerable<Contact> GetAllContacts()
     {
+        _contacts = _contactRespository.GetContacts()!;
+        return _contacts;
+
+
+    }
+
+    public bool CreateContact(ContactRegistrationForm form)
+    {
+        
+
         try
         {
-            ContactEntity contactEntity = ContactFactories.Create(form);
+            var contact = ContactFactories.Create(form);
+            _contacts.Add(contact);
 
-            contactEntity.Id = IdentifierGenerator.GenerateUniqueID();
-
-            _contacts.Add(contactEntity);
-            return true;
+            var result = _contactRespository.SaveContacts(_contacts);
+            return result;
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
             return false;
         }
-
     }
 
-    public IEnumerable<Contact> GetAll()
-    {
-              
+    //public bool UpdateContact(ContactRegistrationForm updatedform)
+    //{
+    //    try
+    //    {
+    //        updateDetail.FirstName = updatedForm.FirstName;
+    //        updateDetail.LastName = updatedContact.LastName;
+    //        updateDetail.Email = updatedContact.Email;
+    //        updateDetail.Phone = updatedContact.Phone;
+    //        updateDetail.Address = updatedContact.Address;
+    //        updateDetail.City = updatedContact.City;
+    //        updateDetail.PostalCode = updatedContact.PostalCode;
 
-        return _contacts.Select(ContactFactories.Create);
-    }
 
+    //        var result = _contactRespository.SaveContacts(_contacts);
+    //        return result;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Debug.WriteLine(ex.Message);
+    //        return false;
+    //    }
+    //}
 }
+
+   

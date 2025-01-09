@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ContactApp.Views.EditContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ContactApp.Views"
+             xmlns:viewModels="clr-namespace:ContactApp.ViewModels" 
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="550" d:DesignWidth="400">
+    
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Title}"/>
+
+            <StackPanel Grid.Row="1" Margin="0 20 0 0">
+                <TextBlock Text="First Name" />
+                <TextBlock Text="{Binding Contact.FirstName}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="Last Name" />
+                <TextBlock Text="{Binding Contact.LastName}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="Email" />
+                <TextBlock Text="{Binding Contact.Email}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="Phone Number" />
+                <TextBlock Text="{Binding Contact.Phone}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="Adress" />
+                <TextBlock Text="{Binding Contact.Address}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="City" />
+                <TextBlock Text="{Binding Contact.City}" Margin="0 0 0 10" Padding="4" />
+
+                <TextBlock Text="Postal Code" />
+                <TextBlock Text="{Binding Contact.PostalCode}" Margin="0 0 0 10" Padding="4" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <Button Content="Edit" Command="{Binding EditDetailsCommand}" Margin="0 10 0 5" Padding="5" />
+                <Button Content="Cancel" Command="{Binding GoToListViewCommand}" Margin="0 10 0 5" Padding="5" />
+            </StackPanel>
+        </Grid>
+
+    
+</UserControl>
