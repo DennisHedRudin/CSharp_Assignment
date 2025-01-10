@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactApp.Views"
              xmlns:models="clr-namespace:ContactApp.ViewModels"
-             mc:Ignorable="d" 
-             Background="White"
+             mc:Ignorable="d"              
              d:DesignHeight="600" d:DesignWidth="400">
     
         <Grid Margin="15">
@@ -42,9 +41,8 @@
             </StackPanel>
 
             <StackPanel Grid.Row="2">
-                <Button Content="Edit" Command="{Binding SaveNewDetailsCommand}" Margin="0 10 0 5" Padding="5" />
-            <Button Content="Delete" Command="{Binding DeleteContactCommand}" Margin="0 10 0 5" Padding="5" />
-            <Button Content="Cancel" Command="{Binding GoToListViewCommand}" Margin="0 10 0 5" Padding="5" />
+            <Button Content="Save" Command="{Binding SaveNewDetailsCommand}" Style="{StaticResource Buttons}" />
+            <Button Content="Cancel" Command="{Binding GoToListViewCommand}" Style="{StaticResource Buttons}" />
             </StackPanel>
         </Grid>
     

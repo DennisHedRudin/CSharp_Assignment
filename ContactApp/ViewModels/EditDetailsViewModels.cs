@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Business.Dtos;
+using Business.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MainApp.Models;
@@ -7,10 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ContactApp.ViewModels;
 
-public partial class EditDetailsViewModels(IServiceProvider serviceProvider) : ObservableObject
+public partial class EditDetailsViewModels(IServiceProvider serviceProvider, IContactService contactService) : ObservableObject
 {
     
     private readonly IServiceProvider _serviceProvider = serviceProvider;
+    private readonly IContactService _contactService = contactService;
 
     [ObservableProperty]
     private string _title = " EDIT DETAILS";
@@ -18,29 +20,17 @@ public partial class EditDetailsViewModels(IServiceProvider serviceProvider) : O
     [ObservableProperty]
     private Contact _contact = new();
 
+   
+
     [RelayCommand]
     private void SaveNewDetails()
     {
-        //var result = _contactService.UpdateContact();
+        var result = _contactService.UpdateContact(Contact);
 
-        var editDetailsViewModel = _serviceProvider.GetRequiredService<EditDetailsViewModels>();
-        editDetailsViewModel.Contact = Contact;
-
+        
         var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-        mainViewModel.CurrentViewModel = editDetailsViewModel;
-    }
-
-    [RelayCommand]
-    private void DeleteContact()
-    {
-        //var result = _contactService.UpdateContact();
-
-        var editDetailsViewModel = _serviceProvider.GetRequiredService<EditDetailsViewModels>();
-        editDetailsViewModel.Contact = Contact;
-
-        var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-        mainViewModel.CurrentViewModel = editDetailsViewModel;
-    }
+        mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<ViewContactListModels>();
+    }    
     
 
     [RelayCommand]

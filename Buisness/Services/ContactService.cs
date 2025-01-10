@@ -8,7 +8,7 @@ namespace MainApp.Services;
 
 public class ContactService(IContactRespository contactRespository) : IContactService
 {
-    
+
     private readonly IContactRespository _contactRespository = contactRespository;
     private List<Contact> _contacts = [];
 
@@ -24,7 +24,7 @@ public class ContactService(IContactRespository contactRespository) : IContactSe
 
     public bool CreateContact(ContactRegistrationForm form)
     {
-        
+
 
         try
         {
@@ -41,28 +41,58 @@ public class ContactService(IContactRespository contactRespository) : IContactSe
         }
     }
 
-    //public bool UpdateContact(ContactRegistrationForm updatedform)
-    //{
-    //    try
-    //    {
-    //        updateDetail.FirstName = updatedForm.FirstName;
-    //        updateDetail.LastName = updatedContact.LastName;
-    //        updateDetail.Email = updatedContact.Email;
-    //        updateDetail.Phone = updatedContact.Phone;
-    //        updateDetail.Address = updatedContact.Address;
-    //        updateDetail.City = updatedContact.City;
-    //        updateDetail.PostalCode = updatedContact.PostalCode;
+    public bool UpdateContact(Contact updatedForm)
+    {
+
+        var updateDetail = new ContactRegistrationForm();
+        try
+        {
+            updateDetail.FirstName = updatedForm.FirstName;
+            updateDetail.LastName = updatedForm.LastName;
+            updateDetail.Email = updatedForm.Email;
+            updateDetail.Phone = updatedForm.Phone;
+            updateDetail.Address = updatedForm.Address;
+            updateDetail.City = updatedForm.City;
+            updateDetail.PostalCode = updatedForm.PostalCode;
 
 
-    //        var result = _contactRespository.SaveContacts(_contacts);
-    //        return result;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.WriteLine(ex.Message);
-    //        return false;
-    //    }
-    //}
+            var result = _contactRespository.SaveContacts(_contacts);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
+    }
+
+    public bool DeleteContactFromList(string id)
+    {
+        try
+        {
+            var contact = _contacts.FirstOrDefault(c => c.Id == id);
+
+            if (contact != null)
+            {
+
+                _contacts.Remove(contact);
+                var result = _contactRespository.SaveContacts(_contacts);
+                return true;
+            }
+
+            return false;
+
+        }
+
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
+    }
 }
+
+   
+
 
    

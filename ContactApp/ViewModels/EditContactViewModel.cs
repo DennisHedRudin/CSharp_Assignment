@@ -3,7 +3,6 @@ using Business.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MainApp.Models;
-using MainApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ContactApp.ViewModels;
@@ -32,6 +31,20 @@ public partial class EditContactViewModel(IServiceProvider serviceProvider, ICon
 
         var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
         mainViewModel.CurrentViewModel = editDetailsViewModel;
+    }
+
+    [RelayCommand]
+    private void DeleteContact(Contact contact)
+    {
+        var result = _contactService.DeleteContactFromList(Contact.Id);
+
+        if (result)
+        {
+            var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+            mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<ViewContactListModels>();
+        }
+       
+        
     }
 
 

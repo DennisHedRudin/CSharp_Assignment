@@ -8,26 +8,34 @@
         xmlns:views="clr-namespace:ContactApp.Views"        
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
+        Background="#333333"
         Title="MainWindow" Height="550" Width="400">
-    <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                
-                <DataTemplate DataType="{x:Type viewModels:AddNewContactViewModels}">
-                    <views:AddNewContactView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:ViewContactListModels}">
-                    <views:ViewContactList/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:EditContactViewModel}">
-                    <views:ViewContactList/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:EditDetailsViewModels}">
-                    <views:ViewContactList/>
-                </DataTemplate>
+    
+    
+        
+        <Grid>
+            <ContentControl Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
 
-            </ContentControl.Resources>            
-        </ContentControl>
+                    <DataTemplate DataType="{x:Type viewModels:AddNewContactViewModels}">
+                        <views:AddNewContactView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:ViewContactListModels}">
+                        <views:ViewContactList/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:EditContactViewModel}">
+                        <views:EditContactView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:EditDetailsViewModels}">
+                        <views:EditDetailsView/>
+                    </DataTemplate>
 
-    </Grid>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+
+    
+    
+    
 </Window>
