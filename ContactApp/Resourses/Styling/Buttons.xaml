@@ -7,23 +7,13 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Black"/>
-        <Setter Property="Foreground" Value="#9FABBD"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="ButtonBorder">
-                        <TextBlock
-                    Text="{TemplateBinding Content}"
-                    />
-                    </Border>
+        <Setter Property="Foreground" Value="White"/>        
 
-                </ControlTemplate>
-
-            </Setter.Value>
-        </Setter>
     </Style>
     
     <!--Add Button-->
+    
+    <!--Tanken va att styla dessa, men pga tidsbrist prioritera jag funktionen-->
     <Style x:Key="AddButtons" TargetType="Button">
         <Setter Property="Margin" Value="0 10 0 5"/>
         <Setter Property="Padding" Value="5"/>
@@ -53,21 +43,9 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Background" Value="DarkBlue"/>
         <Setter Property="Foreground" Value="#9FABBD"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="ButtonBorder">
-                        <TextBlock
-                    Text="{TemplateBinding Content}"
-                    />
-                    </Border>
-
-                </ControlTemplate>
-
-            </Setter.Value>
-        </Setter>
+        
 
 
     </Style>

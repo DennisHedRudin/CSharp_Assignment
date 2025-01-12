@@ -8,7 +8,7 @@
         xmlns:views="clr-namespace:ContactApp.Views"        
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Background="#333333"
+        Background="White"
         Title="MainWindow" Height="550" Width="400">
     
     

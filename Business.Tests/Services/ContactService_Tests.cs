@@ -10,14 +10,13 @@ public class ContactService_Tests
 {
     private readonly Mock<IContactRespository> _contactRespositoryMock;
     private readonly IContactService _contactService;
-    private readonly Mock<IFileService> _fileServiceMock;
+    
     
 
     public ContactService_Tests()
     {
         _contactRespositoryMock = new Mock<IContactRespository>();
-        _contactService = new ContactService(_contactRespositoryMock.Object);        
-        _fileServiceMock = new Mock<IFileService>();       
+        _contactService = new ContactService(_contactRespositoryMock.Object);         
 
 
     }
@@ -79,7 +78,9 @@ public class ContactService_Tests
 
     public void UpdateContact_ShouldUpdateDetails()
     {
-        // arrange        
+        // arrange
+        List<Contact> expected = [new Contact { Id = "1", FirstName = "Test", LastName = "Test", Email = "Test", Phone = "04715474", Address = "Test", City = "Test", PostalCode = "05474", }];
+        
         var updatedForm = new Contact
         {
             Id = "1",
@@ -92,13 +93,22 @@ public class ContactService_Tests
             PostalCode = "Test",
         };
 
+        _contactRespositoryMock.Setup(r => r.GetContacts()).Returns(expected);
         _contactRespositoryMock.Setup(cr => cr.SaveContacts(It.IsAny<List<Contact>>())).Returns(true);
+
+        var contacts = _contactService.GetAllContacts();
+
+
+
+        Assert.Equal("Test", contacts.First().FirstName);
 
         // act
         var result = _contactService.UpdateContact(updatedForm);
+        contacts = _contactService.GetAllContacts();
 
         //assert
-        Assert.True(result);        
+        Assert.True(result);
+        Assert.Equal("Test2", contacts.First().FirstName);
 
     }
 
@@ -109,9 +119,9 @@ public class ContactService_Tests
         List<Contact> expected = [new Contact { Id = "1", FirstName = "Test", LastName = "Test", Email = "Test", Phone = "04715474", Address = "Test", City = "Test", PostalCode = "05474", }];
         var contactIdToDelete = "1";
 
-
+        _contactRespositoryMock.Setup(r => r.GetContacts()).Returns(expected);
         _contactRespositoryMock.Setup(r => r.SaveContacts(It.IsAny<List<Contact>>())).Returns(true);
-
+        _contactService.GetAllContacts();
         // Act
         var result = _contactService.DeleteContactFromList(contactIdToDelete);
 

@@ -44,16 +44,24 @@ public class ContactService(IContactRespository contactRespository) : IContactSe
     public bool UpdateContact(Contact updatedForm)
     {
 
-        var updateDetail = new ContactRegistrationForm();
+        
         try
         {
-            updateDetail.FirstName = updatedForm.FirstName;
-            updateDetail.LastName = updatedForm.LastName;
-            updateDetail.Email = updatedForm.Email;
-            updateDetail.Phone = updatedForm.Phone;
-            updateDetail.Address = updatedForm.Address;
-            updateDetail.City = updatedForm.City;
-            updateDetail.PostalCode = updatedForm.PostalCode;
+            var contactToUpdate = _contacts.FirstOrDefault(x => x.Id == updatedForm.Id);
+
+            if (contactToUpdate == null) 
+            {
+            return false;
+            }
+
+
+            contactToUpdate.FirstName = updatedForm.FirstName;
+            contactToUpdate.LastName = updatedForm.LastName;
+            contactToUpdate.Email = updatedForm.Email;
+            contactToUpdate.Phone = updatedForm.Phone;
+            contactToUpdate.Address = updatedForm.Address;
+            contactToUpdate.City = updatedForm.City;
+            contactToUpdate.PostalCode = updatedForm.PostalCode;
 
 
             var result = _contactRespository.SaveContacts(_contacts);
@@ -77,7 +85,7 @@ public class ContactService(IContactRespository contactRespository) : IContactSe
 
                 _contacts.Remove(contact);
                 var result = _contactRespository.SaveContacts(_contacts);
-                return true;
+                return result;
             }
 
             return false;
